@@ -1,0 +1,29 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #F7F7F7;
+}
+
+.innerContainerUsers {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
+  height: 90%;
+  width: 30%;
+  margin-right: 10px;
+}
+
+.innerContainerChat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 8px;
+  height: 90%;
+  width: 60%;
+  margin-right: 10px;
+}
