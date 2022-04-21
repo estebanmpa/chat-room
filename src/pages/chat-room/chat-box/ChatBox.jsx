@@ -3,7 +3,7 @@ import UseMessages from '../../../common/hooks/useMessages';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import Message from './message/Message';
 import GlobalContext from '../../../common/context/GlobalContext';
-
+import './chatBox.css';
 
 const ChatBox = () => {
     const { user } = useContext(GlobalContext);

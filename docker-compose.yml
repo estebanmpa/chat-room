@@ -8,3 +8,99 @@ services:
       dockerfile: Dockerfile
     ports:
       - 80:80
+    depends_on:
+        - messages
+        - users
+    networks:
+      - app-network
+
+  messages:
+    container_name: web-chat-server-messages
+    image: estebanmpa/web-chat-server-messages:latest
+    command: npm run start:dev
+    ports:
+        - 9001:9001
+    restart: unless-stopped
+    depends_on:
+        - mongo-messages
+    networks:
+      - app-network
+    environment:
+      MONGO_HOST: mongo-messages
+      MONGO_USER: messagesdbuser
+      MONGO_PASSWORD: messagesdbpassword
+      MONGO_DB: messages
+      MONGO_PORT: 27017
+
+  users:
+    container_name: web-chat-server-users
+    image: estebanmpa/web-chat-server-users:latest
+    command: npm run start:dev
+    ports:
+      - 9000:9000
+    restart: unless-stopped
+    depends_on:
+      - mongo-users
+      - cache
+    networks:
+      - app-network
+    environment:
+      MONGO_HOST: mongo-users
+      MONGO_USER: usersdbuser
+      MONGO_PASSWORD: usersdbpassword
+      MONGO_DB: users
+      MONGO_PORT: 27017
+
+  mongo-users:
+    image: mongo
+    container_name: mongo-users
+    ports:
+      - 27017:27017
+    volumes:
+      - ./scripts/mongo-users-init.js:/docker-entrypoint-initdb.d/mongo-users-init.js
+      - ./mongo-users-volume:/data/db-users
+    environment:
+      MONGO_INITDB_DATABASE: users
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: s3cre3t123
+    networks:
+      - app-network
+
+  mongo-messages:
+    image: mongo
+    container_name: mongo-messages
+    ports:
+      - 27018:27017
+    volumes:
+      - ./scripts/mongo-messages-init.js:/docker-entrypoint-initdb.d/mongo-messages-init.js
+      - ./mongo-users-volume:/data/db-messages
+    environment:
+      MONGO_INITDB_DATABASE: messages
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: s3cre3t123
+    networks:
+      - app-network
+
+  cache:
+    image: redis
+    container_name: web-chat-server-users-cache
+    restart: always
+    ports:
+      - 6379:6379
+    command: redis-server
+    volumes: 
+      - cache:/data
+    networks:
+      - app-network
+
+volumes:
+  mongo-users:
+    driver: local
+  mongo-messages:
+    driver: local
+  cache:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
