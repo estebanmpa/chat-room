@@ -4,7 +4,7 @@ const entity = "users";
 
 class UsersRepository {
     async retrieve() {
-        return await usersAxiosInstance.get(entity);
+        return await usersAxiosInstance.get("");
     }
 }
 

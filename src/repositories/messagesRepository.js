@@ -4,11 +4,11 @@ const entity = "messages";
 
 class MessagesRepository {
     async send(message) {
-        return await messagesAxiosInstance.post(entity, message);
+        return await messagesAxiosInstance.post("", message);
     }
 
     async retrieve() {
-        return await messagesAxiosInstance.get(entity);
+        return await messagesAxiosInstance.get("");
     }
 }
 

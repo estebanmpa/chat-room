@@ -1,9 +1,9 @@
-import { usersAxiosInstance } from './axios/baseAxios';
+import { authAxiosInstance } from './axios/baseAxios';
 
 
 class AuthRepository {
     async login(name) {
-        return await usersAxiosInstance.post("auth", { name });
+        return await authAxiosInstance.post("", { name });
     }
 }
 
