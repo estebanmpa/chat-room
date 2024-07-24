@@ -3,10 +3,11 @@
 
 Project written in ReactJS for the front end and NestJS for the backend.
 Websockets are used for real-time communication between the server and the clients.
+Docker images for microservices are build and uploaded to dockerhub using github workflows.
 
 ## Architecture
 <p align="center">
-  <a href="https://reactjs.org/" target="blank"><img src="https://github.com/estebanmpa/web-chat-www/blob/main/public/architecture.jpg" alt="Project Arquitecture" /></a>
+  <a href="https://reactjs.org/" target="blank"><img src="https://raw.githubusercontent.com/estebanmpa/chat-room/main/public/architecture.jpg" alt="Project Arquitecture" /></a>
 </p>
 
 ## Getting Started
@@ -14,7 +15,7 @@ Project is all dockerized so to run it we use the published docker images for ea
 
 In the project directory, you can run:
 
-    docker-compose up
+    docker compose up
 
 Open [http://localhost](http://localhost) to view it in your browser.
  
@@ -22,13 +23,13 @@ Open [http://localhost](http://localhost) to view it in your browser.
 ## Related Repositories and Images
 ### Source Code
  - Users Microservice
-https://github.com/estebanmpa/web-chat-server-users
+web-chat-server-users
 
  - Messages Microservice
-https://github.com/estebanmpa/web-chat-server-messages
+web-chat-server-messages
 
  - Front End
-https://github.com/estebanmpa/web-chat-www
+web-chat-www
 
 ### Docker Images
 - Users Microservice
@@ -41,6 +42,6 @@ https://hub.docker.com/repository/docker/estebanmpa/web-chat-server-messages
 ## Powered By
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="192" alt="Nest Logo" /></a>
-  <a href="https://reactjs.org/" target="blank"><img src="https://github.com/estebanmpa/web-chat-www/blob/main/public/logo192.png" width="80" alt="React Logo" /></a>
-  <a href="https://www.docker.com/" target="blank"><img src="https://github.com/estebanmpa/web-chat-www/blob/main/public/docker.png" width="90" alt="Docker Logo" /></a>
+  <a href="https://reactjs.org/" target="blank"><img src="https://raw.githubusercontent.com/estebanmpa/chat-room/main/public/logo192.png" width="80" alt="React Logo" /></a>
+  <a href="https://www.docker.com/" target="blank"><img src="https://raw.githubusercontent.com/estebanmpa/chat-room/main/public/docker.png" width="90" alt="Docker Logo" /></a>
 </p>
