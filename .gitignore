@@ -7,3 +7,6 @@
 /web-chat-server-messages/mongo-volume
 
 /web-chat-www/node_modules
+/web-chat-www/cache-volume
+/web-chat-www/mongo-users-volume
+/web-chat-www/mongo-messages-volume

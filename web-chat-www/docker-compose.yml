@@ -9,8 +9,6 @@ services:
     depends_on:
         - messages
         - users
-    networks:
-      - app-network
 
   messages:
     container_name: web-chat-server-messages
@@ -21,8 +19,6 @@ services:
     restart: unless-stopped
     depends_on:
         - mongo-messages
-    networks:
-      - app-network
     environment:
       MONGO_HOST: mongo-messages
       MONGO_USER: messagesdbuser
@@ -40,8 +36,6 @@ services:
     depends_on:
       - mongo-users
       - cache
-    networks:
-      - app-network
     environment:
       MONGO_HOST: mongo-users
       MONGO_USER: usersdbuser
@@ -55,14 +49,12 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./scripts/mongo-users-init.js:/docker-entrypoint-initdb.d/mongo-users-init.js
+      - ./scripts/mongo/mongo-users-init.js:/docker-entrypoint-initdb.d/mongo-users-init.js
       - ./mongo-users-volume:/data/db-users
     environment:
       MONGO_INITDB_DATABASE: users
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: s3cre3t123
-    networks:
-      - app-network
 
   mongo-messages:
     image: mongo
@@ -70,14 +62,12 @@ services:
     ports:
       - 27018:27017
     volumes:
-      - ./scripts/mongo-messages-init.js:/docker-entrypoint-initdb.d/mongo-messages-init.js
-      - ./mongo-users-volume:/data/db-messages
+      - ./scripts/mongo/mongo-messages-init.js:/docker-entrypoint-initdb.d/mongo-messages-init.js
+      - ./mongo-messages-volume:/data/db-messages
     environment:
       MONGO_INITDB_DATABASE: messages
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: s3cre3t123
-    networks:
-      - app-network
 
   cache:
     image: redis
@@ -87,18 +77,4 @@ services:
       - 6379:6379
     command: redis-server
     volumes: 
-      - cache:/data
-    networks:
-      - app-network
-
-volumes:
-  mongo-users:
-    driver: local
-  mongo-messages:
-    driver: local
-  cache:
-    driver: local
-
-networks:
-  app-network:
-    driver: bridge
+      - ./cache-volume:/data

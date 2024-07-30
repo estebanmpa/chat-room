@@ -15,8 +15,6 @@ services:
       - cache
     volumes:
       - ./:/app
-    networks:
-      - app-network
 
   mongo:
     image: mongo
@@ -30,8 +28,6 @@ services:
       MONGO_INITDB_DATABASE: users
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: s3cre3t123
-    networks:
-      - app-network
 
   cache:
     image: redis
@@ -42,15 +38,3 @@ services:
     command: redis-server
     volumes: 
       - cache:/data
-    networks:
-      - app-network
-
-volumes:
-  mongo:
-    driver: local
-  cache:
-    driver: local
-
-networks:
-  app-network:
-    driver: bridge
