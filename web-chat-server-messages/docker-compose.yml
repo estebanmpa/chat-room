@@ -1,10 +1,8 @@
 services:
   dev:
     container_name: web-chat-server-messages
-    image: web-chat-server-messages-image:1.0.0
     build:
         context: .
-        target: development
         dockerfile: ./Dockerfile
     command: npm run start:dev
     ports:

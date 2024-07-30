@@ -23,6 +23,7 @@ export class GetUserMiddleware implements NestMiddleware {
             req["user"] = user;
             next();
         } catch (error) {
+            console.error(error)
             // ERROR jwt expired
             throw new UnauthorizedException();
         }
