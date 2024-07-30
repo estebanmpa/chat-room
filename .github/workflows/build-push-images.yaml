@@ -19,9 +19,16 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
-        name: Build and push
+        name: Build and push Server Messsages
         uses: docker/build-push-action@v6
         with:
           file: ./web-chat-server-messages/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clockbox:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web-chat-server-messages:latest
+      -
+        name: Build and push Server Users
+        uses: docker/build-push-action@v6
+        with:
+          file: ./web-chat-server-users/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web-chat-server-users:latest
