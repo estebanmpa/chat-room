@@ -1,7 +1,9 @@
 {
   "name": "web-chat-www",
   "version": "0.1.0",
+  "author": "Esteban Mariano Piga Alessi",
   "private": true,
+  "license": "UNLICENSED",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
